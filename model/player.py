@@ -1,5 +1,5 @@
 class player:
-    def __init__(self,lives=5) -> None:
+    def __init__(self,lives=6) -> None:
         self.lives_start = lives
         self.lives_left = lives
         pass

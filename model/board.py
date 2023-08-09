@@ -2,9 +2,9 @@ from model.player import player
 
 class board:
     EMPTY_SLOT = ' '
-    def __init__(self,size:int=5) -> None:
+    def __init__(self,player: player,size:int=5) -> None:
         self.size = size
-        self.player = player()
+        self.player = player
         self.board = [[[self.EMPTY_SLOT, self.EMPTY_SLOT] for j in range(self.size)] for i in range(self.player.lives_start)]
         pass
 

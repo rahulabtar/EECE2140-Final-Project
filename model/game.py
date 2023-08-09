@@ -6,8 +6,8 @@ class game:
         """Initizizes the game class, with size being the size of the board established in the board class
         """
         self.size = size
-        self.board = board(size)
         self.player = player()
+        self.board = board(self.player,size)
         
         pass
 
@@ -43,13 +43,13 @@ class game:
 
     def check_win(self,graded_word):
         for i in range(self.size):
-            if graded_word[i][1] != '!':
+            if graded_word[i][1] != '*':
                 return False
-            return True 
+        return True 
 
     
     def check_loss(self):
-        if int(self.player.get_lives_left()) <= 0:
+        if int(self.player.get_lives_left()) == 0:
             return True
         return False
 
