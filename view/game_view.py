@@ -5,8 +5,9 @@ from model.player import player
 class GameView(ABC):
   """This class represents the game view
   """
-  def __init__(self, board_view: BoardView) -> None:
+  def __init__(self, board_view: BoardView,player:player) -> None:
     self.board_view = board_view
+    self.player = player
 
   @abstractmethod
   def display_lives(self, player: player):

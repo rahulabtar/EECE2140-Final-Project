@@ -9,7 +9,7 @@ class board:
         pass
 
     def update_board(self,guess_graded:list):
-        index = self.player.lives_start - self.player.lives_left #calcs index of which list affecting
+        index = self.player.lives_start - int(self.player.get_lives_left()) #calcs index of which list affecting
         #print("Lives started with", self.player.lives_start,"Lives left", self.player.lives_left,'Index', index)
         self.board[index] = guess_graded
         

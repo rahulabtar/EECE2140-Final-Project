@@ -6,7 +6,7 @@ class player:
     def life_lost(self)-> None:
         self.lives_left -= 1
     def get_lives_left(self):
-        return self.lives_left
+        return f'{self.lives_left}'
     def __str__(self):
         return f'lives started with: {self.lives_start}, lives left {self.lives_left}'
 

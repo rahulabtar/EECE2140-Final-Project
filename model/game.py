@@ -39,68 +39,17 @@ class game:
         """
         index = random.randint(1,len(words_to_guess))
         return words_to_guess[index]
-    
-    def get_word_dict(self,word:str)->dict:
-        """This method gets a word as a string and returns a dictionary of the charachters of the word as the key and the indexes of the occurence of these charachters as a list as the value
 
-        Args:
-            word (str): A word string, usually the word the players is trying to guess or the players guess itself.
 
-        Returns:
-            word_dict (dict): The inputted word as a dictionary, with the key being a charachter of the word and the value being a list of all the indexes of the occurences of that charachter in the string
-        """
-        word_dict = {}
-        for char2 in word:
-            letter = char2
-            positions = []
-            for index, char in enumerate(word):
-                if char == letter:
-                    positions.append(index)
-            word_dict[char2] = set(positions)
-        return word_dict
-       
+    def check_win(self,graded_word):
+        for i in range(self.size):
+            if graded_word[i][1] != '!':
+                return False
+            return True 
 
-    def compare_dicts(self,word:str,guess:str)->list:
-        """This method takes in two dicts that represent a word and a guess finds the letters the two dicts have in common
-
-        Args:
-            word (str): A word as a dictionary, usually with the 
-            guess (str): The users guess as a dicitonary, as a dicitonary from the get_word_dict method
-
-        Returns:
-            letters_in_common (list): A list of all the letters in common between the word and the guess
-        """
-        letters_in_common = []
-        for key in guess:
-            if key in word:
-                letters_in_common.append(key)
-        return letters_in_common
-
-    def check_indexes(self,word,guess,letters_in_common)->list:
-        """This method takes the word and guess as a dictionary and the letters they have in common as a list and returns a list with all the indexes of the guessed word that are in the correct spot as a list of intergers
-
-        Args:
-            word (dict): The word the player is trying to guess a dictionary outputted by the get_word_dict function
-            guess (dict): The word the player is guessing as a dictionary outputted for the get_word_dict function
-            letters_in_common (list): A list of the letters of the word the player is trying to guess and the word the player is guessing that both words have in common as a list 
-
-        Returns:
-            correct_indexes (list): A list of the indexes of the players guess that are both the correct letter and are in the correct word.
-        """
-        right_indexes, letters_correct = [], []
-        for element in letters_in_common:
-            if word[element] & guess[element] != set():
-                right_indexes.append(word[element] & guess[element])
-                letters_correct.append(element)
-        return [int(element) for subset in right_indexes for element in subset]
-    
-    def check_win(self,correct_indexes):
-        if len(correct_indexes) == self.size:
-            return True
-        return False
     
     def check_loss(self):
-        if self.player.get_lives_left() <= 0:
+        if int(self.player.get_lives_left()) <= 0:
             return True
         return False
 
