@@ -108,4 +108,18 @@ class game:
         if len(guess.strip()) == self.size:
             return True
         return False
+    
+    def get_guess_graded(self,word,guess): #a cleaner way to get the results needed, in one simple function. Uses branch system
+        graded_word = []
+        for i in range(self.size):
+            graded_word.append(['',''])
+        for i in range(self.size):
+            if guess[i] not in word:
+                graded_word[i] = [guess[i],self.board.EMPTY_SLOT]
+            elif guess[i] in word and guess[i] != word[i]:
+                graded_word[i] = [guess[i],'!']
+            elif guess[i] in word and guess[i] == word[i]:
+                graded_word[i] = [guess[i],'*'] 
+        return graded_word
+
         

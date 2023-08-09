@@ -1,15 +1,16 @@
 from model.player import player
 
 class board:
-    EMPTY_SLOT = '0'
+    EMPTY_SLOT = ' '
     def __init__(self,size:int=5) -> None:
         self.size = size
         self.player = player()
-        self.board = [[[self.EMPTY_SLOT, self.EMPTY_SLOT] for j in range(self.size)] for i in range(self.player.lives)]
+        self.board = [[[self.EMPTY_SLOT, self.EMPTY_SLOT] for j in range(self.size)] for i in range(self.player.lives_start)]
         pass
 
     def update_board(self,guess_graded:list):
-        index = player.lives_start - player.lives_left #calcs index of which list affecting
+        index = self.player.lives_start - self.player.lives_left #calcs index of which list affecting
+        #print("Lives started with", self.player.lives_start,"Lives left", self.player.lives_left,'Index', index)
         self.board[index] = guess_graded
         
 
