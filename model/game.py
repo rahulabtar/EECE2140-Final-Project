@@ -70,5 +70,12 @@ class game:
             elif guess[i] in word and guess[i] == word[i]:
                 graded_word[i] = [guess[i],'*'] 
         return graded_word
+    
+    def play_again(self,ans):
+        if ans == 'Y':
+            return True
+        else:
+            return False
+
 
         

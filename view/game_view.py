@@ -31,3 +31,11 @@ class GameView(ABC):
   @abstractmethod
   def display_loss(self):
     pass
+
+  @abstractmethod
+  def display_play_again(self):
+    pass
+  
+  @abstractmethod
+  def say_goodbye(self):
+    pass

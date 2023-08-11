@@ -22,3 +22,9 @@ class GameViewConsole(GameView):
 
   def display_loss(self):
     print('Out of attempts. Game over!')
+  
+  def display_play_again(self):
+    ans = input('Play again? Type Y to play again, type anything else to exit game')
+    return ans
+  def say_goodbye(self):
+    print('Goodbye!')

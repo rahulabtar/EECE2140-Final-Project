@@ -15,4 +15,7 @@ class board:
         
 
     def __str__(self):
+
         return f"Size of Words/Board: {self.size}, Board: {self.board}"
+    def clear_board(self):
+        self.board = [[[self.EMPTY_SLOT, self.EMPTY_SLOT] for j in range(self.size)] for i in range(self.player.lives_start)]
