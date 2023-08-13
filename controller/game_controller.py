@@ -8,12 +8,14 @@ class GameController:
 
   def run_game(self):
     while True:
+      self.view.display_board()
+      self.view.display_lives()
       word_to_guess = self.model.pick_word_to_guess(self.model.get_all_words_of_size())
       while True:
 
-        self.view.display_lives()
-        self.view.display_board()
-
+        #self.view.display_lives()
+        #self.view.display_board()
+        
         guess = self.view.get_guess()
         while not self.model.is_valid_guess(guess):
           self.view.display_invalid_guess()
@@ -22,6 +24,10 @@ class GameController:
         guess = self.model.get_guess_graded(word_to_guess,guess)
         self.model.board.update_board(guess)
         self.model.player.life_lost()
+
+        self.view.display_board()
+        self.view.display_lives()
+
 
         if self.model.check_loss():
           self.view.display_loss()

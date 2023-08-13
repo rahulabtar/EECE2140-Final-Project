@@ -7,16 +7,11 @@ class BoardViewGUI(BoardView):
   PARTIAL_CORRECT = ('YELLOW','BLACK')
   CORRECT = ('GREEN','BLACK')
 
-  def __init__(self, board: board) -> None:
+  def __init__(self, board: board,root: tk) -> None:
     super().__init__(board)
-    self.root = tk.Tk()
-    self.GameView = GameView()
+    self.root = root
 
   def display(self):
-    #root = tk.Tk()
-    tk.Button(text='Input Guess:',command=self.GameView.get_guess).grid(row=0,column=0)
-    WordInput = tk.Entry(self.root)
-    WordInput.grid(row=0,column=1)
     for i in range(self.board.player.lives_start):
         for j in range(self.board.size):
             if self.board.board[i][j][1] == self.board.EMPTY_SLOT:
@@ -26,6 +21,10 @@ class BoardViewGUI(BoardView):
             elif self.board.board[i][j][1] == '*':
                Grade = self.CORRECT
             label = tk.Label(self.root, text=f"{self.board.board[i][j][0]}",bg=Grade[0],fg=Grade[1], borderwidth=1, relief="solid")
-            label.grid(row=i+1, column=j)
-    self.root.title("Wordle")
-    self.root.mainloop()
+            label.grid(row=i+1, column=j,sticky='nsew',padx=0.5,pady=1)
+    for i in range(self.board.player.lives_start):
+      self.root.grid_rowconfigure(i, weight=1)  
+    self.root.grid_rowconfigure(self.board.player.lives_start, weight=1)
+    for j in range(self.board.player.lives_start):
+      self.root.grid_columnconfigure(j, weight=1)  
+
