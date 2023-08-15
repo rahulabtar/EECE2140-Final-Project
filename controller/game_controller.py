@@ -28,24 +28,27 @@ class GameController:
         self.view.display_board()
         self.view.display_lives()
 
-
-        if self.model.check_loss():
-          self.view.display_loss()
-          break
-        elif self.model.check_win(guess):
+        if self.model.check_win(guess):
           self.view.display_win()
           break
+        elif self.model.check_loss():
+          self.view.display_loss()
+          break
+        
 
       self.view.display_board()
-      print("The word was", word_to_guess,"!")
+      #print("The word was", word_to_guess,"!")
       
       ans = self.view.display_play_again()
       self.model.board.clear_board()
       self.model.player.reset_lives()
+      print(ans)
       if not self.model.play_again(ans):
         self.view.say_goodbye()
         break
-  
+    
+        
+
       
 
       

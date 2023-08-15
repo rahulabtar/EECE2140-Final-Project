@@ -37,37 +37,58 @@ class GameViewGUI(GameView):
    
 
   def display_win(self):
+    def woohoo_clicked():
+      won_window.destroy()
+      self.root.quit()
     won_window = tk.Toplevel(self.root)
     won_window.title("You won!")
     tk.Label(won_window, text ="Congrats, You guessed the word!").pack(padx=20, pady=20)
-    close_button = tk.Button(won_window, text="Woohoo!", command=won_window.destroy)
+    close_button = tk.Button(won_window, text="Woohoo!", command=woohoo_clicked)
     close_button.pack(pady=10)
     self.root.mainloop()
   
 
   def display_loss(self):
+    def darn_clicked():
+      loss_window.destroy()
+      self.root.quit()
     loss_window = tk.Toplevel(self.root)
     loss_window.title("You Lost!")
     tk.Label(loss_window, text =f"Out of Attempts, Game Over! The correct word was").pack(padx=20, pady=20)
-    
-    close_button = tk.Button(loss_window, text="Darn!", command=loss_window.destroy)
+    close_button = tk.Button(loss_window, text="Darn!", command=darn_clicked)
     close_button.pack(pady=10)
-    #self.root.mainloop()
+    self.root.mainloop()
     
   
   def display_play_again(self):
     def act_to_yes():
       ans.set(True)  # Set the value of guess_value to the input content
       again_window.destroy()
-      #self.root.quit()  # Exit the mainloop
+      self.root.quit()
+    
+    def act_to_no():
+      ans.set(False)
+      again_window.destroy()
+      self.root.quit()
+
     ans = tk.BooleanVar(value=False) 
     again_window = tk.Toplevel(self.root)
     again_window.title("Continue?")
-    tk.Label(again_window, text ="Would you like to play agsain?").pack(padx=20, pady=20)
+
+    tk.Label(again_window, text ="Would you like to play again?").pack(padx=20, pady=20)
     yes_button = tk.Button(again_window, text="Yes", command=act_to_yes)
     yes_button.pack(pady=10)
-    #self.root.mainloop()
+    no_button = tk.Button(again_window, text="No", command=act_to_no)
+    no_button.pack(pady=20)
+
+  
+    again_window.mainloop()
     return ans.get()
   
   def say_goodbye(self):
+    again_window = tk.Toplevel(self.root)
+    again_window.title("Closing App...")
+    tk.Label(again_window, text ="Goodbye!").pack(padx=20, pady=20)
+    bye_button = tk.Button(again_window, text="Bye", command=self.root.quit)
+    bye_button.pack(pady=10)
     pass

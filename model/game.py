@@ -8,7 +8,7 @@ class game:
         self.size = size
         self.player = player()
         self.board = board(self.player,size)
-        
+        self.word_to_guess = None       
         pass
 
     def get_all_words_of_size(self)->list:
@@ -38,6 +38,7 @@ class game:
             word (str): The word the user has to guess of size 
         """
         index = random.randint(1,len(words_to_guess))
+        self.word_to_guess = words_to_guess[index]
         return words_to_guess[index]
 
 
@@ -72,7 +73,7 @@ class game:
         return graded_word
     
     def play_again(self,ans):
-        if ans == 'Y':
+        if ans == True:
             return True
         else:
             return False
