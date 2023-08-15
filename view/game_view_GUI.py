@@ -18,10 +18,10 @@ class GameViewGUI(GameView):
         guess_value.set(entry.get())  # Set the value of guess_value to the input content
         self.root.quit()  # Exit the mainloop
     guess_value = tk.StringVar()  # Create a StringVar to store the guessed value
-    entry = tk.Entry(self.root, textvariable=guess_value)
+    entry = tk.Entry(self.root, textvariable=guess_value,width=5)
     entry.grid(row=self.player.lives_start + 1, column=3, columnspan=1, sticky='nwes')
     button = tk.Button(self.root, text="Guess", command=guess_clicked)
-    button.grid(row=self.player.lives_start + 1, column=2, columnspan=1, sticky='ne')
+    button.grid(row=self.player.lives_start + 1, column=2, columnspan=1, sticky='nwes')
     self.root.mainloop()
     return guess_value.get()  # Return the guessed value after the mainloop ends
 
@@ -54,7 +54,7 @@ class GameViewGUI(GameView):
       self.root.quit()
     loss_window = tk.Toplevel(self.root)
     loss_window.title("You Lost!")
-    tk.Label(loss_window, text =f"Out of Attempts, Game Over! The correct word was").pack(padx=20, pady=20)
+    tk.Label(loss_window, text =f"Out of Attempts, Game Over!").pack(padx=20, pady=20)
     close_button = tk.Button(loss_window, text="Darn!", command=darn_clicked)
     close_button.pack(pady=10)
     self.root.mainloop()
@@ -92,3 +92,14 @@ class GameViewGUI(GameView):
     bye_button = tk.Button(again_window, text="Bye", command=self.root.quit)
     bye_button.pack(pady=10)
     pass
+
+  def display_word_to_guess(self,word_to_guess):
+    def ok_clicked():
+      word_to_guess_window.destroy()
+      word_to_guess_window.quit()
+    word_to_guess_window= tk.Toplevel(self.root)
+    word_to_guess_window.title("The answer was...")
+    tk.Label(word_to_guess_window, text ="The word was " + word_to_guess + "!").pack(padx=20, pady=20)
+    bye_button = tk.Button(word_to_guess_window, text="ok", command=ok_clicked)
+    bye_button.pack(pady=10)
+    self.root.mainloop()

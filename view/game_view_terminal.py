@@ -31,3 +31,6 @@ class GameViewConsole(GameView):
   
   def say_goodbye(self):
     print('Goodbye!')
+
+  def display_word_to_guess(self,word_to_guess):
+    print('The word was ', word_to_guess)

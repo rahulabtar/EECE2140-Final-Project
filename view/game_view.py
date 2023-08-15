@@ -39,3 +39,6 @@ class GameView(ABC):
   @abstractmethod
   def say_goodbye(self):
     pass
+
+  def display_word_to_guess(self,word_to_guess):
+    pass

@@ -12,9 +12,6 @@ class GameController:
       self.view.display_lives()
       word_to_guess = self.model.pick_word_to_guess(self.model.get_all_words_of_size())
       while True:
-
-        #self.view.display_lives()
-        #self.view.display_board()
         
         guess = self.view.get_guess()
         while not self.model.is_valid_guess(guess):
@@ -37,12 +34,12 @@ class GameController:
         
 
       self.view.display_board()
-      #print("The word was", word_to_guess,"!")
+      self.view.display_word_to_guess(word_to_guess)
       
       ans = self.view.display_play_again()
       self.model.board.clear_board()
       self.model.player.reset_lives()
-      print(ans)
+     
       if not self.model.play_again(ans):
         self.view.say_goodbye()
         break
